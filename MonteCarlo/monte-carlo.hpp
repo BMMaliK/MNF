@@ -16,6 +16,8 @@ std::vector<double> monte_carlo(int n, Gen G)
 		x = G();
 		result[0] += x;
 		result[1] += x*x;
+		if (!(j%((long)1e5)))
+			cout << j << endl;
 	}
 	result[0] /= (double) n;
 	result[1] = (result[1] - n*result[0]*result[0])/(double)(n-1);
