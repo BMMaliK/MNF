@@ -3,89 +3,43 @@
 #include "monte-carlo.hpp"
 #include "var_alea.hpp"
 #include "processus.h"
+#include "ToolBox.h"
+#include "RandomGenerator.hpp"
 
 #include <iostream>
 #include <fstream>
 
 using namespace std;
 
-double actualize(double intrinsic) {
-	double r = .01;
-	double T = 1.;
-
-	return exp(-r*T)*intrinsic;
-}
-
-double payoff(double S_T) {
-	//Call
-	double K = 100.;
-	return (S_T > K) ? (S_T - K) : 0;
-}
-
-double antitheticPayoff(pair<double, double> intrinsic) {
-	return .5*(payoff(intrinsic.first) + payoff(intrinsic.second));
-}
-
-double logNormalize(double g) {
-	double S0 = 100.;
-	double r = .01;
-	double sigma = .2;
-	double T = 1.;
-
-	return S0*exp((r - pow(sigma, 2) / 2) + sigma*g);
-}
-
-std::pair<double, double> antitheticLogNormalize(double g) {
-	pair<double, double> temp(logNormalize(g), logNormalize(-g));
-	return temp;
-}
-
-processus<double>::result_type logNormalizeProc(processus<double>::result_type X) {
-	double S0 = 100.;
-	double r = .01;
-	double sigma = .2;
-	double T = 1.;
-	processus<double>::result_type value(X.size());
-
-	processus<double>::cst_iter i;
-	processus<double>::iter j;
-	for (i = X.begin(), j = value.begin(); i != X.end(); ++i, ++j) {
-		j->first = i->first;
-		j->second = S0*exp((r - pow(sigma, 2) / 2)*i->first + sigma*i->second);
-	}
-	return value;
-}
-
-double average(processus<double>::result_type X) {
-	double x = 0;
-	processus<double>::cst_iter i;
-	for (i = ++X.begin(); i != X.end(); ++i)
-		x += i->second;
-	return x / (X.size()-1);
-};
-
-double max(processus<double>::result_type X) {
-	double x = 0;
-	processus<double>::cst_iter i;
-	for (i = ++X.begin(); i != X.end(); ++i)
-		x = (x > (i->second)) ? x : i->second;
-	return x;
-};
-
 int main() {
+	RandomGenerator Standard = RandomGenerator("Standard");
+	RandomGenerator SQRT = RandomGenerator("SQRT");
+	RandomGenerator Halton = RandomGenerator("Halton");
+	int num_sims = 1e6;
+	double S = 100.0;  // Option price
+	double K = 100.0;  // Strike price
+	double r = 0.01;   // Risk-free rate (1%)
+	double v = 0.2;    // Volatility of the underlying (20%)
+	double T = 1.0;
+	//double call_price = callBS(S, K, v, T, r);
+	//double call_price_mc = callMc(num_sims, S, K, r, v, T, Standard);
+	//callMc(num_sims, S, K, r, v, T, SQRT, "mc_sqrt.csv");
+	//callMc(num_sims, S, K, r, v, T, Halton, "mc_halton.csv");
 
+	// Tracer le prix du Call
 	//test_1d(&callBS_Spot, 0., 200., 20000, "Call_BS.csv");
 
 	// Prix Black Scholes
-	cout << "Prix Black Scholes : " << callBS(100., 100., .2, 1., .01) << endl;
+	cout << "Prix Black Scholes : " << callBS(S, K, v, T, r) << endl;
 
-	// Convergence Monte Carlo
 	init_alea();
 
+	// Convergence Monte Carlo
 	//gaussian G;
 	////progression_monte_carlo(2e6, compose(ptr_fun(actualize), compose(ptr_fun(payoff), compose(ptr_fun(logNormalize), G))), "Convergence_Monte_Carlo.csv");
 
-	vector<double> result1e5, result1e6;
+	vector<double> result1e6;
+	//Densité
 	//ofstream file;
 	//file.open("Distribution_Monte_Carlo.csv");
 	//for (int i = 0; i < 100; ++i) {

@@ -146,13 +146,16 @@
     <ClInclude Include="BS.h" />
     <ClInclude Include="monte-carlo.hpp" />
     <ClInclude Include="mt19937.h" />
+    <ClInclude Include="RandomGenerator.hpp" />
     <ClInclude Include="Tests.h" />
+    <ClInclude Include="ToolBox.h" />
     <ClInclude Include="var_alea.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\ConsoleApplication1\ToolBox\processus.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mt19937.cpp" />
+    <ClCompile Include="RandomGenerator.cpp" />
     <ClCompile Include="var_alea.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
