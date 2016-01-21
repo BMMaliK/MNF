@@ -15,6 +15,7 @@ public:
     RandomGenerator (std::string NomMethod);
     ~RandomGenerator();
     double SuiteAleatoire();
+//    double boxmuller(double U1, double U2);
     double uniform();
     double gaussian();
     double SQRT(int p, int q);//SQRT
@@ -28,7 +29,7 @@ private:
     long long a, b, M;
 public:
     std::string NomMethod ;
-    long x;
+    long long x;
     int n,p,q;//Generateur SQRT
     int m,d,l;//Generateur Halton
 };
