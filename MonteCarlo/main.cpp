@@ -25,6 +25,39 @@ int main() {
 	//double call_price_mc = callMc(num_sims, S, K, r, v, T, Standard);
 	//callMc(num_sims, S, K, r, v, T, SQRT, "mc_sqrt.csv");
 	//callMc(num_sims, S, K, r, v, T, Halton, "mc_halton.csv");
+    
+    // Write points cloud
+    
+    //    RandomGenerator Standard1 = RandomGenerator("Standard");
+
+    //    string path_uni = "/Users/ericfourrier/Documents/MNF/mnf_e/data/uniform_congruence.csv";
+    //    ofstream file_uni(path_uni, ios::out | ios::trunc);
+    //    file_uni << "Seed1"<< "," << "Seed2"<< endl;
+    //    for (int i=0;i<10000;i++ ){
+    //        file_uni << Standard1.SuiteAleatoire() << "," << Standard1.SuiteAleatoire() << endl ;
+    //    }
+    //    RandomGenerator Halton1 = RandomGenerator("Halton");
+    //    RandomGenerator Halton2 = RandomGenerator("Halton");
+    //    Halton1.d =5;
+    //    Halton2.d =7;
+    //    string path_halton = "/Users/ericfourrier/Documents/MNF/mnf_e/data/uniform_halton.csv";
+    //    ofstream file_halton(path_halton, ios::out | ios::trunc);
+    //    file_halton << "Seed1"<< "," << "Seed2"<< endl;
+    //    for (int i=0;i<10000;i++ ){
+    //        file_halton << Halton1.SuiteAleatoire() << "," << Halton2.SuiteAleatoire()<< endl ;
+    //    }
+    //    RandomGenerator SQRT1 = RandomGenerator("SQRT");
+    //    RandomGenerator SQRT2 = RandomGenerator("SQRT");
+    //    SQRT1.p =5;
+    //    SQRT2.p =7;
+    //    string path_sqrt = "/Users/ericfourrier/Documents/MNF/mnf_e/data/uniform_sqrt.csv";
+    //    ofstream file_sqrt(path_sqrt, ios::out | ios::trunc);
+    //    file_sqrt << "Seed1"<< "," << "Seed2"<< endl;
+    //    for (int i=0;i<10000;i++ ){
+    //        file_sqrt << SQRT1.SuiteAleatoire() << "," << SQRT2.SuiteAleatoire() << endl ;
+    //    }
+    //    RandomGenerator SQRT = RandomGenerator("SQRT");
+    //    RandomGenerator Halton = RandomGenerator("Halton");
 
 	// Tracer le prix du Call
 	//test_1d(&callBS_Spot, 0., 200., 20000, "Call_BS.csv");
